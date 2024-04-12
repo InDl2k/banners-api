@@ -1,0 +1,19 @@
+env: "local"
+storage_path: "./storage/storage.db"
+http_server:
+  address: "0.0.0.0:8000"
+  timeout: 4s
+  idle_timeout: 30s
+database:
+  name: "postgres"
+  username: "postgres"
+  password: "1234"
+  host: "host.docker.internal" #'localhost' for work in local machine | 'host.docker.internal' for work in docker
+  port: "5432"
+  type: "postgres"
+jwt_token:
+  secret: "secret-avito-key"
+  password: "pass"
+  ttl: 259200
+redis:
+  address: "host.docker.internal:6379" #'localhost' for work in local machine | 'host.docker.internal' for work in docker
