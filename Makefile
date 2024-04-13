@@ -9,6 +9,9 @@ stop:
 restart:
 	docker-compose -f docker-compose.yml stop
 	docker-compose -f docker-compose.yml up -d
-test:
+start-local:
+	go build cmd/main.go
+	main
+test-local:
 	cd test
 	go test -v
