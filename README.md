@@ -37,6 +37,64 @@ go test -v                      - запускаем тесты
 Тестирует: Запросы по получению баннера пользователем
 ```
 
+# Важно
+```
+Не реализована система авторизации (имитирую)
+Чтобы получить JWT-токены нужно обратися к /token
+Для получения токена админа: /token/admin
+Для получения токена пользователя: /token/user
+Для получения токена без доступа: /token/something
+```
+
+# Запросы
+```shell
+POST Запрос создания баннера
+URL: 'http://localhost:8000/banner'
+HEADERS: 
+    'accept: application/json'
+    'Authorization: ADMIN_TOKEN'
+    'Content-Type: application/json'
+BODY:
+    {
+        "tag_ids": [
+            0
+        ],
+        "feature_id": 0,
+        "content": {
+            "title": "some_title",
+            "text": "some_text",
+            "url": "some_url"
+        },
+        "is_active": true
+    }
+```
+```shell
+RESPONSE:
+    STATUS: 201 Created
+    {
+        "banner_id":12
+    }
+```
+
+```shell
+POST Запрос получения баннера пользователем
+URL: 'http://localhost:8000/user_banner?tag_id=0&feature_id=0&use_last_revision=true'
+HEADERS: 
+    'accept: application/json'
+    'Authorization: ADMIN_TOKEN'
+```
+```shell
+RESPONSE:
+    STATUS: 200 OK
+    {
+        "content": {
+            "text": "some_text",
+            "title": "some_title",
+            "url": "some_url"
+        }
+    }
+```
+
 # Проблемы, с которыми столкнулся
 1)  Как структурировать проект
 2)  Большой размер образа докера (Решено через компиляцию)
